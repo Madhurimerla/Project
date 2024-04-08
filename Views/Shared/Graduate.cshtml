@@ -1,0 +1,46 @@
+﻿<style>
+    /* Apply CSS styles to the form to control its layout */
+    form {
+        display: flex; /* Use flexbox layout */
+        flex-wrap: wrap; /* Allow items to wrap to the next line */
+    }
+
+    /* Apply CSS styles to the checkbox container to control its layout */
+    .checkbox-container {
+        display: flex; /* Use flexbox layout */
+        flex-wrap: wrap; /* Allow items to wrap to the next line */
+        max-height: 80vh; /* Set maximum height to 80% of viewport height */
+        overflow-y: auto; /* Add vertical scrollbar if necessary */
+    }
+
+    /* Apply CSS styles to the individual checkbox items */
+    .checkbox-item {
+        flex: 0 0 calc(25% - 20px); /* Make each checkbox item occupy 25% of the available width with some margin */
+        margin: 10px; /* Add margin around each checkbox item */
+    }
+</style>
+
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using CourseAdvisoryApplication.Models
+
+@{
+    ViewData["Title"] = "Courses";
+}
+<h1>@ViewData["Title"]</h1>
+
+<body>
+    <p>Please select the courses that are completed.</p>
+</body>
+
+<form asp-controller="Graduate" asp-action="SelectCourses" method="post">
+    <div class="checkbox-container">
+        @foreach (var item in ViewBag.CourseList)
+        {
+            <div class="checkbox-item">
+                <input type="checkbox" name="selectedItems" value="@item.CourseId" id="@($"checkbox_{item.CourseId}")" />
+                <label for="@($"checkbox_{item.CourseId}")">@item.CourseId</label>
+            </div>
+        }
+    </div>
+    <button type="submit">Submit</button>
+</form>

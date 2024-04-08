@@ -1,0 +1,61 @@
+@{
+    ViewData["Title"] = "Course Summary";
+}
+
+<h1 class="Blue-Text">Course Summary</h1>
+<p><div class="Blue-Text">
+    @TempData["Advisor_name"]
+</div></p>
+<p>
+@foreach (var item in ViewBag.messagelist)
+        {
+            <li>@item</li>
+        }
+</p>
+<p>Please refer to course catalog and check with your advisor on selection of elective courses.</p>
+<span class="Red-Text" >Note: If you have a 'C' grade in your core course or if you have more than two 'C' grades in over all
+   completed courses, Please check with your advisor on next steps.
+</span>
+<style>
+    .Red-Text {
+        color: red;
+    }
+    .Blue-Text {
+        color: navy;
+    }
+</style>
+@model List<Result>
+
+<table class="table">
+    <thead>
+        <tr> 
+            <th>Course ID</th>
+            <th>Course Name</th>
+            <th>Thesis Option MandatoryCourse YN</th>
+            <th>Non-Thesis Option MandatoryCourse YN</th>
+            <th>Course Category</th>
+            <th>Course Credits</th>
+            <th>Student Course Completion Status</th>
+            <th>Course Credits Obtained</th>
+            <th>PreReq Course ID</th>
+            <!-- Add more column headers as needed -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Course_ID</td>
+                <td>@item.Course_Name</td>
+                <td>@item.ThesisOption_MandatoryCourse_YN</td>
+                <td>@item.NonThesisOption_MandatoryCourse_YN</td>
+                <td>@item.Course_Category</td>
+                <td>@item.Course_Credits</td>
+                <td>@item.Student_Course_Completion_Status</td>
+                <td>@item.Course_Credits_Obtained</td>
+                <td>@item.PreReq_Course_ID</td>
+                <!-- Add more columns as needed -->
+            </tr>
+        }
+    </tbody>
+</table>

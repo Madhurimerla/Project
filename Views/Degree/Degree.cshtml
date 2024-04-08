@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@using CourseAdvisoryApplication.Models
+
+@{
+    ViewData["Title"] = "Degree";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    @TempData["Message"]
+</div>
+
+<body>
+    <header>
+<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <ul class="navbar-nav flex-grow-1">
+            <!-- Navigation links code -->
+            <li class="nav-item">
+                <!-- Display the welcome message with the username -->
+                @if(!string.IsNullOrEmpty(ViewBag.Username))
+                {
+                    <span class="nav-link text-dark">Welcome, @ViewBag.Username!</span>
+                }
+            </li>
+        </ul>
+    </div>
+    </header>
+</body>
+
+<form asp-controller="Degree" asp-action="Degree" method="post">
+    <!-- Render dropdown list -->
+    <select name="selectedValue">
+        <option value="">-- Select --</option>
+        @if(@ViewBag.DropDownValues != null)
+        {
+        @foreach (var item in ViewBag.DropDownValues)
+        {
+            @if(item != null)
+            {
+            <option value="@item.Text">@item.Text</option>
+            }
+        }
+        }
+    </select>
+    <!-- Submit button -->
+    <button type="Submit">Submit</button>
+</form>
+<!--<select name="Degree" asp-items="@ViewBag.DropDownValues"></select>
+
+<form asp-controller="Degree" asp-action="Submit" method="post">
+    <div class="form-group">
+        <label for="Degree">Select an option:</label>
+        <select id="Degree" name="Degree" class="form-control">
+            <option value="Graduate:ComputerScience">Graduate:ComputerScience</option>
+            <option value="Under-Graduate:ComputerScience">UUnder-Graduate:ComputerScience</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form> -->

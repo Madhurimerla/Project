@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Signup";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (ViewData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewData["ErrorMessage"]
+    </div>
+}
+
+<div>
+    @TempData["Message"]
+</div>
+
+<form asp-controller="Home" asp-action="Signup">
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="text" id="password" name="password" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="confirmpassword">confirm password:</label>
+        <input type="text" id="confirmpassword" name="confirmpassword" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
